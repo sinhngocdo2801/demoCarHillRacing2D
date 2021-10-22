@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour {
-    public static GameObject gameoverUI;
+    public GameObject gameoverUI;
     public static bool isGameover = false;
     public static bool isActive = false;
 
