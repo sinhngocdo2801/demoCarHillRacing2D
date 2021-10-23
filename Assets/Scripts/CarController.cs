@@ -50,7 +50,7 @@ public class CarController : MonoBehaviour {
 		
 
 
-	}
+	}//Update
 
 	void FixedUpdate ()
 	{
@@ -71,6 +71,6 @@ public class CarController : MonoBehaviour {
 		}
 
 		
-    }
+    }//fixedUpdate
 
 }

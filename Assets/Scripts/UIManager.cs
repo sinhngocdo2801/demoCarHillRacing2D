@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,9 +10,18 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject uiWinGame;
 
+    public static int scoreValue = 0;
+    Text score;
+
+    private void Awake()
+    {
+        score = GetComponent<Text>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // pause game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
@@ -25,7 +35,14 @@ public class UIManager : MonoBehaviour
 
             }
         }
-    }
+
+        //update score
+        //score.text = "SCORE: " + scoreValue.ToString();
+        //---
+
+
+
+    }//update
 
     //continue game
     public void Resume()

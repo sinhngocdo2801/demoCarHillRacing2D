@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collidable
+  - Goal
   layers:
   - Default
   - TransparentFX
