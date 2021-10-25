@@ -88,7 +88,7 @@ public class CarController : MonoBehaviour {
 			backWheel.useMotor = true;
 			frontWheel.useMotor = true;
 
-			JointMotor2D motor = new JointMotor2D { motorSpeed = movement * speed, maxMotorTorque = 10000 };
+			JointMotor2D motor = new JointMotor2D { motorSpeed = movement * speed, maxMotorTorque = 1000 };
 			backWheel.motor = motor;
 			frontWheel.motor = motor;
 

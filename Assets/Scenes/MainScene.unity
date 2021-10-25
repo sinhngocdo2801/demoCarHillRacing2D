@@ -1230,8 +1230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -74}
-  m_SizeDelta: {x: 111, y: 111}
+  m_AnchoredPosition: {x: 61.3, y: -60.8}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582246058
 MonoBehaviour:
@@ -1985,8 +1985,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3134022889666049784, guid: 1f80a0dfbd0ff1c49b0bc5cf60cfa055, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134022889666049784, guid: 1f80a0dfbd0ff1c49b0bc5cf60cfa055, type: 3}
       propertyPath: rotationSpeed
-      value: 689.15
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3134022889666049787, guid: 1f80a0dfbd0ff1c49b0bc5cf60cfa055, type: 3}
       propertyPath: gameoverUI
@@ -2349,7 +2353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1067144809
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2642,8 +2646,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76, y: -69}
-  m_SizeDelta: {x: 134.65918, y: 95.8864}
+  m_AnchoredPosition: {x: -73.4, y: -56.5}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207234778
 MonoBehaviour:
