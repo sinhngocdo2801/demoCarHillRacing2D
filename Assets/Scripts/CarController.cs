@@ -3,8 +3,10 @@ using System.Collections;
 
 public class CarController : MonoBehaviour {
 
-	public float speed = 1500f;
+	public float speed = 0f;
 	public float rotationSpeed = 15f;
+	private float maxSpeed = 3000f ;
+	private float minSpeed = 0f;
 
 	public WheelJoint2D backWheel;
 	public WheelJoint2D frontWheel;
@@ -17,42 +19,65 @@ public class CarController : MonoBehaviour {
 	void Update ()
 	{
 
-        movement = -Input.GetAxisRaw("Vertical") * speed;
+        movement = -Input.GetAxisRaw("Vertical");
         rotation = Input.GetAxisRaw("Horizontal");
 
-  //      //set movement value
-  //      if (CarMoveController.isUpButtonDown = true)
-  //      {
-		//	movement = 1f * speed;
-  //      }
-		//else if(CarMoveController.isDownButtonDown = true)
-  //      {
-		//	movement = -1f * speed;
-  //      }
-		//else
-  //      {
-		//	movement = 0f;
-  //      }
+		// higher movespeed with w and up key
+		if (Input.GetKey("w") || Input.GetKey("up"))
+		{
+			if (speed <= maxSpeed)
+				speed += 30;
+			else
+				speed = maxSpeed;
+		}
+		// lower movespeed with s and down key
+		else if (Input.GetKey("s") || Input.GetKey("down"))
+		{
+			if (speed >= minSpeed)
+				speed -= 30;
+		}
+		// lower movespeed if no key is pressed
+		else if (!Input.GetKey("w") || !Input.GetKey("up"))
+		{
+			if (speed >= 0)
+				speed -= 30;
+		}
 
-		////set rotation value
-		//if (CarMoveController.isRightButtonDown = true)
-		//{
-		//	rotation = 1f;
-		//}
-		//else if (CarMoveController.isLeftButtonDown = true)
-  //      {
-		//	rotation = -1f;
-  //      }
-		//else
-  //      {
-		//	rotation = 0f;
-  //      }
-		
+		/*
+        //set movement value
+        if (CarMoveController.isUpButtonDown = true)
+        {
+			movement = 1f * speed;
+        }
+		else if(CarMoveController.isDownButtonDown = true)
+        {
+			movement = -1f * speed;
+        }
+		else
+        {
+			movement = 0f;
+        }
+
+		//set rotation value
+		if (CarMoveController.isRightButtonDown = true)
+		{
+			rotation = 1f;
+		}
+		else if (CarMoveController.isLeftButtonDown = true)
+        {
+			rotation = -1f;
+        }
+		else
+        {
+			rotation = 0f;
+        }
+		*/
+
 
 
 	}//Update
 
-	void FixedUpdate ()
+    void FixedUpdate ()
 	{
 		if (movement == 0f)
 		{
@@ -63,7 +88,7 @@ public class CarController : MonoBehaviour {
 			backWheel.useMotor = true;
 			frontWheel.useMotor = true;
 
-			JointMotor2D motor = new JointMotor2D { motorSpeed = movement, maxMotorTorque = 10000 };
+			JointMotor2D motor = new JointMotor2D { motorSpeed = movement * speed, maxMotorTorque = 10000 };
 			backWheel.motor = motor;
 			frontWheel.motor = motor;
 

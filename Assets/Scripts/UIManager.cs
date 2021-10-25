@@ -13,9 +13,12 @@ public class UIManager : MonoBehaviour
     public static int scoreValue = 0;
     Text score;
 
+    
+
     private void Awake()
     {
         score = GetComponent<Text>();
+
     }
 
     // Update is called once per frame
@@ -66,6 +69,7 @@ public class UIManager : MonoBehaviour
     {
         PauseSetActive(false);
         Time.timeScale = 1f;
+        gameIsPause = false;
         GameManagement.Replay();
     }
 
@@ -73,4 +77,7 @@ public class UIManager : MonoBehaviour
     {
         pauseMenu.SetActive(isActive);
     }
+
+
+    
 }
