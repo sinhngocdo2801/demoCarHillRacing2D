@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | demo2DCarHillRacing</title>
+    <title>Unity WebGL Player | RacingClimb</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <canvas id="unity-canvas" width=1920 height=1080></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -22,7 +22,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">demo2DCarHillRacing</div>
+        <div id="unity-build-title">RacingClimb</div>
       </div>
     </div>
     <script>
@@ -33,9 +33,9 @@
         frameworkUrl: buildUrl + "/Builld.framework.js.br",
         codeUrl: buildUrl + "/Builld.wasm.br",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "demo2DCarHillRacing",
-        productVersion: "1.0",
+        companyName: "DoNgocSinh",
+        productName: "RacingClimb",
+        productVersion: "1.0.1",
       };
 
       var container = document.querySelector("#unity-container");
@@ -62,9 +62,10 @@
           mobileWarning.style.display = "none";
         }, 5000);
       } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.width = "1920px";
+        canvas.style.height = "1080px";
       }
+      canvas.style.background = "url('" + buildUrl + "/Builld.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
