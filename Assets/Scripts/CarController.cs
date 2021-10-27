@@ -115,8 +115,9 @@ public class CarController : MonoBehaviour {
 				backWheel.motor = motor;
 				frontWheel.motor = motor;
 
-				rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
+				
 			}
+			rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
 		}
 
 		// filldown in heart

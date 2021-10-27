@@ -11,6 +11,8 @@ public class Goal : MonoBehaviour {
     private void Awake()
     {
         isWin = false;
+
+
     }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +23,14 @@ public class Goal : MonoBehaviour {
             //StartCoroutine(SetActive());
             yield return new WaitForSeconds(2);
             GameManagement.currentIndex++;
-            GameManagement.LoadNextMap();
+            if(GameManagement.currentIndex == 6)
+            {
+                SceneManager.LoadScene("LastScene");
+            }else
+            {
+                GameManagement.LoadNextMap();
+            }
+               
         }
         //StartCoroutine(SetActive());
     }

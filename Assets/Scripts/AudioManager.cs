@@ -54,6 +54,8 @@ public class AudioManager : MonoBehaviour
 
         Play("main_2");
 
+        
+
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
@@ -64,6 +66,14 @@ public class AudioManager : MonoBehaviour
             Load();
         }
     }
+
+    //private void Update()
+    //{
+    //    if (Goal.isWin == true)
+    //    {
+    //        Play("win");
+    //    }
+    //}
 
     public void changeVolume()
     {

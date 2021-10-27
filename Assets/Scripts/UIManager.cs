@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        score = GetComponent<Text>();
+        //score = GetComponent<Text>();
 
     }
 

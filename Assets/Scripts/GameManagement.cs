@@ -5,35 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
-    public Scene currentScene;
+    Scene scene;
     public static int currentIndex;
 
     public GameObject slider;
 
     bool isClicked = false;
 
+    public static int isLastScene = 0;
+
     private void Awake()
     {
-        if(currentIndex > 1)
+        if (currentIndex > 1)
         {
+            //currentIndex = SceneManager.GetActiveScene().buildIndex + 1;
             currentIndex = currentIndex;
-        }else
+        }
+        else
         {
             currentIndex = 1;
         }
+        //currentIndex = 1;
     }
     // Update is called once per frame
     public static void Replay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
+        //SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Map_1", LoadSceneMode.Additive);
 
     }
 
     public void Play(int index)
     {
         FindObjectOfType<AudioManager>().Play("button");
-        currentIndex = index;
+        //currentIndex = index;
         SceneManager.LoadScene("MainScene");
         SceneManager.LoadScene($"Map_{index}", LoadSceneMode.Additive);
     }

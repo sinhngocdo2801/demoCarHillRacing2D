@@ -2475,6 +2475,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: win
+    clip: {fileID: 8300000, guid: eeff55f1a8a89d742b1c14b1da03327a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   volumeSlider: {fileID: 982886498}
 --- !u!224 &1088129495
 RectTransform:
