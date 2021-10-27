@@ -1,14 +1,25 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour {
 
 	public float speed = 0f;
+	//public float CarTouge = 10f;
 	public float rotationSpeed = 15f;
-	private float maxSpeed = 3000f ;
-	private float minSpeed = 0f;
 
-	public WheelJoint2D backWheel;
+    public static float heart = 1f;
+	public float heartConsumpion = 0.1f;
+
+	[SerializeField]
+    private Image heartIamge;
+
+	private float maxSpeed = 3000f;
+    //private float minSpeed = 0f;
+
+    //public Rigidbody2D backWheel;
+    //public Rigidbody2D frontWheel;
+    public WheelJoint2D backWheel;
 	public WheelJoint2D frontWheel;
 
 	public Rigidbody2D rb;
@@ -16,34 +27,41 @@ public class CarController : MonoBehaviour {
 	private float movement = 0f;
 	private float rotation = 0f;
 
-	void Update ()
+    private void Awake()
+    {
+		heart = 1f;
+    }
+
+    void Update ()
 	{
+        #region Move With velocity time by time
+        //// higher movespeed with w and up key
+        if (Input.GetKey("w") || Input.GetKey("up"))
+        {
+            if (speed <= maxSpeed)
+                speed += 10;
+            else
+                speed = maxSpeed;
+        }
+        //// lower movespeed with s and down key
+        //else if (Input.GetKey("s") || Input.GetKey("down"))
+        //{
+        //	//if (speed >= minSpeed)
+        //		speed -= 10;
+        //}
+        //// lower movespeed if no key is pressed
+        //else if (!Input.GetKey("w") || !Input.GetKey("up"))
+        //{
+        //    if (speed >= 0)
+        //        speed -= 100;
+        //}
+        #endregion
+        //movement input
+        movement = -Input.GetAxisRaw("Vertical") * speed;
+		rotation = Input.GetAxisRaw("Horizontal");
 
-        movement = -Input.GetAxisRaw("Vertical");
-        rotation = Input.GetAxisRaw("Horizontal");
-
-		// higher movespeed with w and up key
-		if (Input.GetKey("w") || Input.GetKey("up"))
-		{
-			if (speed <= maxSpeed)
-				speed += 30;
-			else
-				speed = maxSpeed;
-		}
-		// lower movespeed with s and down key
-		else if (Input.GetKey("s") || Input.GetKey("down"))
-		{
-			if (speed >= minSpeed)
-				speed -= 30;
-		}
-		// lower movespeed if no key is pressed
-		else if (!Input.GetKey("w") || !Input.GetKey("up"))
-		{
-			if (speed >= 0)
-				speed -= 30;
-		}
-
-		/*
+        #region move with button
+        /*
         //set movement value
         if (CarMoveController.isUpButtonDown = true)
         {
@@ -72,30 +90,52 @@ public class CarController : MonoBehaviour {
 			rotation = 0f;
         }
 		*/
+        #endregion
 
+        heartIamge.fillAmount = heart;
 
-
-	}//Update
+    }//Update
 
     void FixedUpdate ()
 	{
-		if (movement == 0f)
-		{
-			backWheel.useMotor = false;
-			frontWheel.useMotor = false;
-		} else
-		{
-			backWheel.useMotor = true;
-			frontWheel.useMotor = true;
+        #region move with joinMotor2D
+		if( heart > 0)
+        {
+			if (movement == 0f)
+			{
+				backWheel.useMotor = false;
+				frontWheel.useMotor = false;
+			}
+			else
+			{
+				backWheel.useMotor = true;
+				frontWheel.useMotor = true;
 
-			JointMotor2D motor = new JointMotor2D { motorSpeed = movement * speed, maxMotorTorque = 1000 };
-			backWheel.motor = motor;
-			frontWheel.motor = motor;
+				JointMotor2D motor = new JointMotor2D { motorSpeed = movement, maxMotorTorque = 100 };
+				backWheel.motor = motor;
+				frontWheel.motor = motor;
 
-			rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
+				rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
+			}
 		}
 
-		
-    }//fixedUpdate
+		// filldown in heart
+		heart -= heartConsumpion * Time.fixedDeltaTime;
+
+		#endregion
+
+		#region move with Addtouque rigidbody2d on wheel
+
+		//if (heart > 0)
+		//      {
+		//	backWheel.AddTorque(movement * Time.fixedDeltaTime);
+		//	frontWheel.AddTorque(movement * Time.fixedDeltaTime);
+		//	rb.AddTorque(movement * CarTouge * Time.fixedDeltaTime);
+		//}
+
+		//heart -= heartConsumpion * Time.fixedDeltaTime;
+		#endregion
+
+	}//fixedUpdate
 
 }

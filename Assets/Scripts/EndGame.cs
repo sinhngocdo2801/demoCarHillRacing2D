@@ -10,9 +10,13 @@ public class EndGame : MonoBehaviour {
     {
         if (colInfo.CompareTag("Collidable"))
         {
-            gameoverUI.SetActive(true);
-            isGameover = true;
-            isActive = true;
+            if(Goal.isWin == false)
+            {
+                gameoverUI.SetActive(true);
+                isGameover = true;
+                isActive = true;
+            }
+            
         }
     }
 
