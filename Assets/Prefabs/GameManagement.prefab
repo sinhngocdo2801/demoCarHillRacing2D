@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b064549a99ea2d498e7cb2cf6a37284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  guiWinGame: {fileID: 0}
+  slider: {fileID: 361647820003665466, guid: 4ef761b2b74550c45a3e17b201875918, type: 3}

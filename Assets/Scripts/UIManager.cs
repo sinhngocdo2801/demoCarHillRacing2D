@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager ins;
     public static bool gameIsPause = false;
 
     public GameObject pauseMenu;
@@ -17,8 +18,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        //score = GetComponent<Text>();
-
+        makeSingleton();
     }
 
     // Update is called once per frame
@@ -35,13 +35,9 @@ public class UIManager : MonoBehaviour
             else
             {
                 Pause();
-
+                Debug.Log("Game is pause");
             }
         }
-
-        //update score
-        //score.text = "SCORE: " + scoreValue.ToString();
-        //---
 
 
 
@@ -50,6 +46,7 @@ public class UIManager : MonoBehaviour
     //continue game
     public void Resume()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         PauseSetActive(false);
         Time.timeScale = 1f;
         gameIsPause = false;
@@ -58,15 +55,18 @@ public class UIManager : MonoBehaviour
     //pause scene , stop action game
     public void Pause()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         PauseSetActive(true);
         uiWinGame.SetActive(false);
         Time.timeScale = 0f;
         gameIsPause = true;
+        Debug.Log("Called");
     }
 
     //replay game, replay action game
     public void ReplayPauseScene()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         PauseSetActive(false);
         Time.timeScale = 1f;
         gameIsPause = false;
@@ -76,6 +76,24 @@ public class UIManager : MonoBehaviour
     void PauseSetActive(bool isActive)
     {
         pauseMenu.SetActive(isActive);
+    }
+
+    public void SetGameIsPause(bool isPause)
+    {
+        gameIsPause = isPause;
+        Time.timeScale = 1f;
+    }
+
+    void makeSingleton()
+    {
+        if( ins == null)
+        {
+            ins = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 

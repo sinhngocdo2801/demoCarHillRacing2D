@@ -36,16 +36,6 @@ public class AudioManager : MonoBehaviour
 
             s.source.loop = s.loop;
         }
-
-        //if( volumeSlider == null)
-        //{
-        //    //volumeSlider = this;
-        //    DontDestroyOnLoad(volumeSlider);
-        //}
-        //else
-        //{
-        //    Destroy(this);
-        //}
     }
 
     private void Start()

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class CarController : MonoBehaviour {
 
 	public float speed = 0f;
-	//public float CarTouge = 10f;
 	public float rotationSpeed = 15f;
 
     public static float heart = 1f;
@@ -14,11 +13,8 @@ public class CarController : MonoBehaviour {
 	[SerializeField]
     private Image heartIamge;
 
-	private float maxSpeed = 3000f;
-    //private float minSpeed = 0f;
 
-    //public Rigidbody2D backWheel;
-    //public Rigidbody2D frontWheel;
+	private float maxSpeed = 3000f;
     public WheelJoint2D backWheel;
 	public WheelJoint2D frontWheel;
 
@@ -29,6 +25,7 @@ public class CarController : MonoBehaviour {
 
     private void Awake()
     {
+		
 		heart = 1f;
     }
 
@@ -43,18 +40,6 @@ public class CarController : MonoBehaviour {
             else
                 speed = maxSpeed;
         }
-        //// lower movespeed with s and down key
-        //else if (Input.GetKey("s") || Input.GetKey("down"))
-        //{
-        //	//if (speed >= minSpeed)
-        //		speed -= 10;
-        //}
-        //// lower movespeed if no key is pressed
-        //else if (!Input.GetKey("w") || !Input.GetKey("up"))
-        //{
-        //    if (speed >= 0)
-        //        speed -= 100;
-        //}
         #endregion
         //movement input
         movement = -Input.GetAxisRaw("Vertical") * speed;
@@ -96,6 +81,12 @@ public class CarController : MonoBehaviour {
 
     }//Update
 
+
+
+
+
+
+
     void FixedUpdate ()
 	{
         #region move with joinMotor2D
@@ -119,6 +110,10 @@ public class CarController : MonoBehaviour {
 			}
 			rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
 		}
+		//else
+  //      {
+		//	EndGame.ins.GameOver();
+  //      }
 
 		// filldown in heart
 		heart -= heartConsumpion * Time.fixedDeltaTime;

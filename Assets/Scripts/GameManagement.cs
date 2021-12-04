@@ -5,60 +5,69 @@ using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
-    Scene scene;
-    public static int currentIndex;
+    public static GameManagement Intance;
 
+    public static int currentIndex = 0;
+
+    //Var slider sound
     public GameObject slider;
 
     bool isClicked = false;
 
-    public static int isLastScene = 0;
+    //public static int isLastScene = 0;
 
     private void Awake()
     {
-        if (currentIndex > 1)
-        {
-            //currentIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            currentIndex = currentIndex;
-        }
-        else
-        {
-            currentIndex = 1;
-        }
-        //currentIndex = 1;
+
+        MakeSingleton();
     }
     // Update is called once per frame
-    public static void Replay()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Map_1", LoadSceneMode.Additive);
 
-    }
 
     public void Play(int index)
     {
         FindObjectOfType<AudioManager>().Play("button");
-        //currentIndex = index;
         SceneManager.LoadScene("MainScene");
         SceneManager.LoadScene($"Map_{index}", LoadSceneMode.Additive);
+        currentIndex = index;
+    }
+
+    public static void Replay()
+    {
+        FindObjectOfType<AudioManager>().Play("button");
+        UIManager.ins.SetGameIsPause(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("Map_1", LoadSceneMode.Additive);
+
     }
 
     //load map
     public static void LoadNextMap()
     {
-        //currentIndex++;
-        SceneManager.LoadScene("MainScene");
-        SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
+        FindObjectOfType<AudioManager>().Play("button");
+        currentIndex++;
+        if (currentIndex == 6)
+        {
+            SceneManager.LoadScene("LastScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene($"Map_{currentIndex}", LoadSceneMode.Additive);
+        }
+        
     }
 
     public void QuitGame()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         Application.Quit();
     }
 
     public void Menu()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         UIManager.gameIsPause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("GameMenu");
@@ -68,7 +77,8 @@ public class GameManagement : MonoBehaviour
     //working with button sound
     public void WhenButtonClicked()
     {
-        if(slider.activeInHierarchy == true)
+        FindObjectOfType<AudioManager>().Play("button");
+        if (slider.activeInHierarchy == true)
         {
             slider.SetActive(false);
         }
@@ -89,4 +99,22 @@ public class GameManagement : MonoBehaviour
             isClicked = false;
         }
     }
+
+
+
+
+
+    public void MakeSingleton()
+    {
+        if(Intance == null)
+        {
+            Intance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class BonusPoint : MonoBehaviour
 {
     public GameObject heart;
-    //carController Class
     
 
     private void OnTriggerEnter2D(Collider2D collision)
